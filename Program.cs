@@ -44,9 +44,39 @@ namespace CreateClass
             return "Person:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\n\n";
         }
     }
-    class Employee
+    class Employee : Person
     {
+        public int Salary { get; set; }
+        public string Profession { get; set; }
 
+        public Employee()
+        {
+            Name = "Default name";
+            BirthDay = DateTime.Parse("2000/01/01");
+            Gender = "Default gender";
+            Salary = 0;
+            Profession = "unknown";
+                    }
+
+        //instance constructor has 5 parameters.
+        public Employee(
+            string name,
+            DateTime birthDay,
+            string gender,
+            int salary,
+            string profession)
+        {
+            this.Name = name;
+            this.BirthDay = birthDay;
+            this.Gender = gender;
+            this.Salary = salary;
+            this.Profession = profession;
+        }
+
+        public override string ToString()
+        {
+            return "Person:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\nSalary: " + Salary + " PLN" + "\nProfession: " + Profession ;
+        }
     }
     class Program
     {
@@ -59,8 +89,16 @@ namespace CreateClass
                 "Female");
             Person newPerson2 = new Person();
 
+            Employee newEmployee = new Employee(
+                "Tom",
+                DateTime.Parse("1980/12/3"),
+                "Male",
+                12000,
+                "Architect");
+
             Console.Write(newPerson.ToString());
             Console.Write(newPerson2.ToString());
+            Console.Write(newEmployee.ToString());
             Console.ReadLine();
         }
     }
