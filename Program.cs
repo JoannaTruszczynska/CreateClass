@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
+using System.Text;
+
 
 namespace CreateClass
 {
@@ -44,10 +47,14 @@ namespace CreateClass
             return "Person:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\n\n";
         }
     }
-    class Employee : Person
+    public class Employee : Person
     {
         public int Salary { get; set; }
         public string Profession { get; set; }
+
+       
+        
+        
 
         public Employee()
         {
@@ -56,7 +63,9 @@ namespace CreateClass
             Gender = "Default gender";
             Salary = 0;
             Profession = "unknown";
-                    }
+
+           
+        }
 
         //instance constructor has 5 parameters.
         public Employee(
@@ -71,14 +80,29 @@ namespace CreateClass
             this.Gender = gender;
             this.Salary = salary;
             this.Profession = profession;
+           
+
         }
+
 
         public override string ToString()
         {
-            return "Person:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\nSalary: " + Salary + " PLN" + "\nProfession: " + Profession ;
+            return "\n\nPerson:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\nSalary: " + Salary + " PLN" + "\nProfession: " + Profession;
         }
     }
-    class Program
+    public static class Room
+    {
+        public static int RoomNumber(this Employee newEmployee)
+        {
+            if (newEmployee.Profession == "Architect")
+                return 1;
+            else
+                return 2;
+        }
+       
+
+    }
+    class Programe
     {
         static void Main(string[] args)
         {
@@ -96,9 +120,19 @@ namespace CreateClass
                 12000,
                 "Architect");
 
+            Employee newEmployee2 = new Employee(
+               "Sofie",
+               DateTime.Parse("1985/2/23"),
+               "Female",
+               12000,
+               "Teacher");
+
             Console.Write(newPerson.ToString());
             Console.Write(newPerson2.ToString());
             Console.Write(newEmployee.ToString());
+            Console.Write("\nRoom number: " + newEmployee.RoomNumber());
+            Console.Write(newEmployee2.ToString());
+            Console.Write("\nRoom number: " + newEmployee2.RoomNumber());
             Console.ReadLine();
         }
     }
