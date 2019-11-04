@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Collections.Generic;
-using System.Text;
 
 
 namespace CreateClass
@@ -51,21 +48,18 @@ namespace CreateClass
     {
         public int Salary { get; set; }
         public string Profession { get; set; }
+        public Room Room { get; set; }
 
-       
-        
-        
-
-        public Employee()
+       /* public Employee()
         {
             Name = "Default name";
             BirthDay = DateTime.Parse("2000/01/01");
             Gender = "Default gender";
             Salary = 0;
             Profession = "unknown";
-
-           
+            Room.RoomNumber = 300;
         }
+        */
 
         //instance constructor has 5 parameters.
         public Employee(
@@ -73,35 +67,38 @@ namespace CreateClass
             DateTime birthDay,
             string gender,
             int salary,
-            string profession)
+            string profession,
+            Room room)
         {
             this.Name = name;
             this.BirthDay = birthDay;
             this.Gender = gender;
             this.Salary = salary;
             this.Profession = profession;
-           
+            this.Room = room;
+
 
         }
 
 
         public override string ToString()
         {
-            return "\n\nPerson:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\nSalary: " + Salary + " PLN" + "\nProfession: " + Profession;
+            return "\n\nPerson:\nName: " + Name + "\nBirth Day: " + BirthDay.ToString("d") + "\nGender: " + IsGender() + "\nSalary: " + Salary + " PLN" + "\nProfession: " + Profession + "\nRoom Number: " + Room.RoomNumber;
         }
     }
-    public static class Room
-    {
-        public static int RoomNumber(this Employee newEmployee)
-        {
-            if (newEmployee.Profession == "Architect")
-                return 1;
-            else
-                return 2;
-        }
-       
 
+    public class Room
+    {
+        public int RoomNumber { get; set; }
+
+        public Room(
+            int roomNumber)
+        {
+            this.RoomNumber = roomNumber;
+        }
     }
+
+
     class Programe
     {
         static void Main(string[] args)
@@ -118,21 +115,26 @@ namespace CreateClass
                 DateTime.Parse("1980/12/3"),
                 "Male",
                 12000,
-                "Architect");
+                "Architect",
+                new Room(111));
 
             Employee newEmployee2 = new Employee(
                "Sofie",
                DateTime.Parse("1985/2/23"),
                "Female",
-               12000,
-               "Teacher");
+               10000,
+               "Teacher",
+               new Room(200));
+
+            //Employee newEmployee3 = new Employee();
+
+
 
             Console.Write(newPerson.ToString());
             Console.Write(newPerson2.ToString());
             Console.Write(newEmployee.ToString());
-            Console.Write("\nRoom number: " + newEmployee.RoomNumber());
             Console.Write(newEmployee2.ToString());
-            Console.Write("\nRoom number: " + newEmployee2.RoomNumber());
+           // Console.Write(newEmployee3.ToString());
             Console.ReadLine();
         }
     }
